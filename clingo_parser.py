@@ -63,7 +63,7 @@ if __name__ == '__main__':
         print("day(wed).", file=database)
         print("day(thu).", file=database)
         print("day(fri).", file=database)
-        print("hour(8..17)")
+        print("hour(8..16).", file=database)
 
         # lecture(ahmetOguzAkyuz, 1)
         #start from second row
@@ -86,7 +86,8 @@ if __name__ == '__main__':
                     
             print("hoca({hoca_name}).".format(hoca_name=hoca_name), file=database)
             for busy_hour in busy_hours:
-                print("busy({hoca}, {time_slot}).".format(hoca=hoca_name, time_slot=busy_hour), file=database)
+                if(int(busy_hour[3:5])<17):
+                    print("busy({hoca}, {day}, {hour}).".format(hoca=hoca_name, day=busy_hour[:3],hour=int(busy_hour[3:5])), file=database)
 
     parse_csv_instructors()
     parse_csv_courses()
@@ -154,7 +155,9 @@ if __name__ == '__main__':
         decl = "has_section({}, {}).".format(c_codes[i],repetition)
         print(decl, file=database)
 
-
+    for i in range(len(c_codes)):
+        if c_service_courses[i] == "Yes":
+            print("service_course({course_code})".format(course_code=c_codes[i]), file=database)
     
 
 

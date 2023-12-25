@@ -604,7 +604,21 @@ has_section(ceng590, 1).
 has_section(ceng591, 1).
 has_section(ceng778, 1).
 has_section(ceng786, 1).
-service_course(ceng301)
-service_course(ceng302)
-service_course(ceng305)
-service_course(ceng310)
+service_course(ceng301).
+service_course(ceng302).
+service_course(ceng305).
+service_course(ceng310).
+
+place(bmb1).
+place(bmb2).
+place(bmb3).
+place(bmb4).
+place(bmb5).
+place(bmb_a101).
+
+capacity(bmb1,180).
+capacity(bmb2,80).
+capacity(bmb3,80).
+capacity(bmb4,60).
+capacity(bmb5,60).
+capacity(bmb_a101,25).
