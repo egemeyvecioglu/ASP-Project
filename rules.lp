@@ -36,6 +36,18 @@
     COURSE1  != COURSE2,
     SECTION1 != SECTION2.
 
+%% A course-section pair can not happen in more than one place at a time. by Ege
+:-  assignment(COURSE, DAY, HOUR, PLACE1, _, SECTION),
+    assignment(COURSE, DAY, HOUR, PLACE2, _, SECTION),
+    PLACE1 != PLACE2.
+
+% Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively. by Ege			
+:-  assignment(COURSE, DAY, HOUR1, PLACE, HOCA, SECTION),
+    assignment(COURSE, DAY, HOUR2, PLACE, HOCA, SECTION),
+    not service_course(COURSE),
+    undergraduate(COURSE),
+    | HOUR1 - HOUR2 | > 1.
+
 
 % % One classroom cannot be occupied by more than one course at a time. by anil eren gocer
 % COURSE1 = COURSE2, HOCA1 = HOCA2, SECTION1 = SECTION2 :- 
