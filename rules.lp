@@ -8,6 +8,7 @@
     place(PLACE), 
     teaches(HOCA, COURSE), 
     has_section(COURSE, SECTION).
+
 :- #count {A : assignment(A, _, _, _, _, _)} < 30. % I couldn't find how to force assignment count to be the biggest number possible, for now I just put 35
 
 % Each course-section pair should be assigned total_lecture_hours times. by Ege
