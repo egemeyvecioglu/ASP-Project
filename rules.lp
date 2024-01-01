@@ -53,6 +53,9 @@
     undergraduate(COURSE),
     | HOUR1 - HOUR2 | > 1.
 
+% Each section of each course should be assigned exactly as many lecture hours as requested. by Berkay 
+:-  total_lecture_hours(COURSE, HOURS), has_section(COURSE, SECTION),
+    #count{DAY, HOUR: assignment(COURSE, DAY, HOUR, _, _, SECTION)} != HOURS.
 
 % % One classroom cannot be occupied by more than one course at a time. by anil eren gocer
 % COURSE1 = COURSE2, HOCA1 = HOCA2, SECTION1 = SECTION2 :- 
