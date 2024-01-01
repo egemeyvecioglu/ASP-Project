@@ -30,11 +30,9 @@
     HOCA1 != HOCA2,
     SECTION1 != SECTION2.
 
-% % An instructor don't give a course in their busy hour. by Ege
-:- assignment(_, DAY1, HOUR1, _, HOCA, _),
-    busy(HOCA, DAY2, HOUR2),
-    DAY1 = DAY2,
-    HOUR1 = HOUR2.
+% % An instructor don't give a course in their busy hour. by Ege, edited by Berkay
+:- assignment(_, DAY, HOUR, _, HOCA, _),
+    busy(HOCA, DAY, HOUR).
 
 % % An instructor can give at most one course at a time. by Ege
 :-  assignment(COURSE1, DAY, HOUR, _, HOCA, SECTION1),
