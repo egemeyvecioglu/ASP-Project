@@ -24,11 +24,8 @@
 :- assignment(_, DAY, HOUR, _, HOCA, _),
     busy(HOCA, DAY, HOUR).
 
-% % An instructor can give at most one course at a time. by Ege
-:-  assignment(COURSE1, DAY, HOUR, _, HOCA, SECTION1),
-    assignment(COURSE2, DAY, HOUR, _, HOCA, SECTION2),
-    COURSE1  != COURSE2,
-    SECTION1 != SECTION2.
+% An instructor can give at most one course at a time. originally by Ege, rewritten by Berkay
+:-  day(DAY), hour(HOUR), hoca(HOCA), #count{COURSE, PLACE, SECTION: assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} > 1.
 
 %% A course-section pair can not happen in more than one place at a time. by Ege
 :-  assignment(COURSE, DAY, HOUR, PLACE1, _, SECTION),
