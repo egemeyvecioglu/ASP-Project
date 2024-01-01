@@ -11,13 +11,6 @@
 
 :- #count {A : assignment(A, _, _, _, _, _)} < 30. % I couldn't find how to force assignment count to be the biggest number possible, for now I just put 35
 
-% Each course-section pair should be assigned total_lecture_hours times. by Ege
-% THIS DOES NOT WORK
-% :-  total_lecture_hours(COURSE, TOTAL),
-%     has_section(COURSE, SECTION),
-%     #count {A, B : assignment(A, _, _, _, _, B), A = COURSE, B = SECTION} != TOTAL.
-
-
 % the capacity of the classroom should be greater than or equal to the number of students in the course-section pair. by Ege
 :-  assignment(COURSE, _, _, PLACE, _, SECTION),
     section_capacity(COURSE, SECTION, CAPACITY),
