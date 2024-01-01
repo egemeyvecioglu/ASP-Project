@@ -24,12 +24,8 @@
     capacity(PLACE, CAPACITY2),
     CAPACITY > CAPACITY2.
 
-% % One classroom cannot be occupied by more than one course at a time. Ege
-:-  assignment(COURSE1, DAY, HOUR, PLACE, HOCA1, SECTION1), 
-    assignment(COURSE2, DAY, HOUR, PLACE, HOCA2, SECTION2),
-    COURSE1 != COURSE2,
-    HOCA1 != HOCA2,
-    SECTION1 != SECTION2.
+% One classroom cannot be occupied by more than one course at a time. originally by Ege, rewritten by Berkay
+:-  day(DAY), hour(HOUR), place(PLACE), #count{COURSE, HOCA, SECTION: assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} > 1.
 
 % % An instructor don't give a course in their busy hour. by Ege, edited by Berkay
 :- assignment(_, DAY, HOUR, _, HOCA, _),
