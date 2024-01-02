@@ -363,6 +363,7 @@ must(ceng302).
 section_capacity(ceng302, 1, 27).
 has_section(ceng302, 1).
 service_course(ceng302).
+total_lecture_hours(ceng302, 3).
 
 
 undergraduate(ceng305).
