@@ -78,6 +78,13 @@
     DAY1 == DAY2,
     | HOUR1 - HOUR2 | > 1.
 
+% % if two consecutive hours are assigned, there should be in the same place. by Emirhan
+:-  assignment(COURSE, DAY1, HOUR1, PLACE1, _, SECTION),
+    assignment(COURSE, DAY2, HOUR2, PLACE2, _, SECTION),
+    DAY1 == DAY2,
+    | HOUR1 - HOUR2 | == 1,
+    PLACE1 != PLACE2.
+
 % 2 hours of lecture cannot be spanned over 2 days. by Ege
 :- total_lecture_hours(COURSE, 2),
     #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} != 1.
