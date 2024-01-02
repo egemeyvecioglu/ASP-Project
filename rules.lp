@@ -89,10 +89,17 @@
 :- total_lecture_hours(COURSE, 2),
     #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} != 1.
 
-% Graduate courses cannot be spanned over 3 days. by Ege
+% Graduate courses be in a single day. by Ege
 :- total_lecture_hours(COURSE, 3),
     graduate(COURSE),
-    #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} > 2. % (we can set it as > 1 to assign grad courses to a single day)
+    #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} != 1. 
+
+% 3 hours of graduate  courses should be consecutive. by Ege
+:- total_lecture_hours(COURSE, 3),
+    graduate(COURSE),
+    assignment(COURSE, DAY, HOUR1, _, _, SECTION),
+    assignment(COURSE, DAY, HOUR2, _, _, SECTION),
+    | HOUR1 - HOUR2 | > 2.
 
 
 % Hard constraints on places: 
