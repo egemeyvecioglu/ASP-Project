@@ -78,6 +78,16 @@
     DAY1 == DAY2,
     | HOUR1 - HOUR2 | > 1.
 
+% 2 hours of lecture cannot be spanned over 2 days. by Ege
+:- total_lecture_hours(COURSE, 2),
+    #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} != 1.
+
+% Graduate courses cannot be spanned over 3 days. by Ege
+:- total_lecture_hours(COURSE, 3),
+    graduate(COURSE),
+    #count{DAY: assignment(COURSE, DAY, _, _, _, SECTION)} > 2. % (we can set it as > 1 to assign grad courses to a single day)
+
+
 % Hard constraints on places: 
 %1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
 %2. One classroom cannot be occupied by more than one course at a time.					
