@@ -57,7 +57,26 @@
 :-  teaches(HOCA, COURSE),
     not assignment(COURSE, _, _, _, HOCA, _).
 
-% Each of the instructors that teaches the same course must have at least one section by emirhan
+
+% A must course with 3 hours of lecture cannot be spanned over 3 days. by Emirhan
+:-  total_lecture_hours(COURSE, 3),
+    assignment(COURSE, DAY1, HOUR1, PLACE, HOCA, SECTION),
+    assignment(COURSE, DAY2, HOUR2, PLACE, HOCA, SECTION),
+    assignment(COURSE, DAY3, HOUR3, PLACE, HOCA, SECTION),
+    must(COURSE),
+    undergraduate(COURSE),
+    DAY1 != DAY2,
+    DAY2 != DAY3,
+    DAY1 != DAY3.
+
+% % if  total_lecture_hours is 3, then there should be two consecutive hours. by Emirhan
+:-  total_lecture_hours(COURSE, 3),
+    assignment(COURSE, DAY1, HOUR1, PLACE, HOCA, SECTION),
+    assignment(COURSE, DAY2, HOUR2, PLACE, HOCA, SECTION),
+    must(COURSE),
+    undergraduate(COURSE),
+    DAY1 == DAY2,
+    | HOUR1 - HOUR2 | > 1.
 
 % Hard constraints on places: 
 %1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
