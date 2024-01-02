@@ -1,19 +1,16 @@
-total_lecture_hours(ceng111, 3).
-teaches(sinan_kalkan, ceng111).
-teaches(gokturk_ucoluk, ceng111).
 day(mon).
 day(tue).
 day(wed).
 day(thu).
 day(fri).
 hour(8..16).
-course(ceng111).
 place(bmb1).
 place(bmb2).
 place(bmb3).
 place(bmb4).
 place(bmb5).
 place(bmb_a101).
+place(g101).
 busy(sinan_kalkan, mon, 13).
 busy(sinan_kalkan, wed, 9).
 busy(sinan_kalkan, wed, 10).
@@ -41,6 +38,7 @@ capacity(bmb3,80).
 capacity(bmb4,60).
 capacity(bmb5,60).
 capacity(bmb_a101,25).
+capacity(g101,250).
 hoca(gokturk_ucoluk).
 hoca(sinan_kalkan).
 busy(gokturk_ucoluk, mon, 16).
@@ -51,19 +49,11 @@ busy(gokturk_ucoluk, sun, 10).
 busy(gokturk_ucoluk, sun, 12).
 busy(gokturk_ucoluk, sun, 13).
 busy(gokturk_ucoluk, sun, 14).
-has_section(ceng111, 1).
-has_section(ceng111, 2).
-has_section(ceng111, 3).
-undergraduate(ceng111).
-undergraduate(ceng111).
 
 service_course(ceng301).
 service_course(ceng302).
 service_course(ceng305).
 service_course(ceng310).
-section_capacity(ceng111, 1, 55).
-section_capacity(ceng111, 2, 55).
-section_capacity(ceng111, 3, 62).
 hoca(ahmet_oguz_akyuz).
 busy(ahmet_oguz_akyuz, mon, 14).
 busy(ahmet_oguz_akyuz, tue, 14).
@@ -300,7 +290,6 @@ busy(yusuf_sahillioglu, fri, 9).
 busy(yusuf_sahillioglu, fri, 14).
 busy(yusuf_sahillioglu, fri, 15).
 
-teaches(hakan_yildiz, ceng140).
 
 course(ceng100).
 undergraduate(ceng100).
@@ -309,6 +298,19 @@ section_capacity(ceng100, 1, 175).
 has_section(ceng100, 1).
 teaches(emre_akbas, ceng100).
 total_lecture_hours(ceng100, 2).
+
+course(ceng111).
+must(ceng111).
+total_lecture_hours(ceng111, 3).
+teaches(sinan_kalkan, ceng111).
+teaches(gokturk_ucoluk, ceng111).
+has_section(ceng111, 1).
+has_section(ceng111, 2).
+has_section(ceng111, 3).
+undergraduate(ceng111).
+section_capacity(ceng111, 1, 55).
+section_capacity(ceng111, 2, 55).
+section_capacity(ceng111, 3, 62).
 
 undergraduate(ceng140).
 course(ceng140).
@@ -393,13 +395,13 @@ has_section(ceng315, 1).
 has_section(ceng315, 2).
 
 
-% course(ceng331).
-% undergraduate(ceng331).
-% must(ceng331).
-% section_capacity(ceng331, 1, 200).
-% total_lecture_hours(ceng331, 3).
-% has_section(ceng331, 1).
-% teaches(erol_sahin, ceng331).
+course(ceng331).
+undergraduate(ceng331).
+must(ceng331).
+section_capacity(ceng331, 1, 200).
+total_lecture_hours(ceng331, 3).
+has_section(ceng331, 1).
+teaches(erol_sahin, ceng331).
 
 
 
@@ -418,7 +420,7 @@ teaches(pinar_karagoz, ceng351).
 course(ceng371).
 undergraduate(ceng371).
 elective(ceng371).
-section_capacity(ceng371, 1, 50).
+section_capacity(ceng371, 1, 50). 
 total_lecture_hours(ceng371, 3).
 teaches(murat_manguoglu,ceng371).
 has_section(ceng371, 1).
@@ -560,17 +562,19 @@ teaches(emre_akbas, ceng501).
 course(ceng501).
 graduate(ceng501).
 elective(ceng501).
+total_lecture_hours(ceng501, 3).
 section_capacity(ceng501, 1, 45).
 has_section(ceng501, 1).
 
 
 
-% course(ceng514).
-% graduate(ceng514).
-% elective(ceng514).
-% total_lecture_hours(ceng514, 3).
-% section_capacity(ceng514, 1, 25).
-% has_section(ceng514, 1).
+course(ceng514).
+teaches(pinar_karagoz, ceng514).
+graduate(ceng514).
+elective(ceng514).
+total_lecture_hours(ceng514, 3).
+section_capacity(ceng514, 1, 25).
+has_section(ceng514, 1).
 
 
 course(ceng536).
