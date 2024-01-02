@@ -1,9 +1,69 @@
+total_lecture_hours(ceng111, 3).
+teaches(sinan_kalkan, ceng111).
+teaches(gokturk_ucoluk, ceng111).
 day(mon).
 day(tue).
 day(wed).
 day(thu).
 day(fri).
 hour(8..16).
+course(ceng111).
+place(bmb1).
+place(bmb2).
+place(bmb3).
+place(bmb4).
+place(bmb5).
+place(bmb_a101).
+busy(sinan_kalkan, mon, 13).
+busy(sinan_kalkan, wed, 9).
+busy(sinan_kalkan, wed, 10).
+busy(sinan_kalkan, wed, 13).
+busy(sinan_kalkan, thu, 8).
+busy(sinan_kalkan, thu, 13).
+busy(sinan_kalkan, sun, 12).
+busy(sinan_kalkan, sun, 13).
+busy(sinan_kalkan, sun, 14).
+busy(sinan_kalkan, sun, 15).
+busy(sinan_kalkan, mon, 11).
+busy(sinan_kalkan, wed, 15).
+busy(sinan_kalkan, wed, 10).
+busy(sinan_kalkan, wed, 13).
+busy(sinan_kalkan, thu, 8).
+busy(sinan_kalkan, thu, 13).
+
+busy(sinan_kalkan, sun, 12).
+busy(sinan_kalkan, sun, 13).
+busy(sinan_kalkan, sun, 14).
+busy(sinan_kalkan, sun, 15).
+capacity(bmb1,180).
+capacity(bmb2,80).
+capacity(bmb3,80).
+capacity(bmb4,60).
+capacity(bmb5,60).
+capacity(bmb_a101,25).
+hoca(gokturk_ucoluk).
+hoca(sinan_kalkan).
+busy(gokturk_ucoluk, mon, 16).
+busy(gokturk_ucoluk, tue, 9).
+busy(gokturk_ucoluk, sat, 9).
+busy(gokturk_ucoluk, sun, 9).
+busy(gokturk_ucoluk, sun, 10).
+busy(gokturk_ucoluk, sun, 12).
+busy(gokturk_ucoluk, sun, 13).
+busy(gokturk_ucoluk, sun, 14).
+has_section(ceng111, 1).
+has_section(ceng111, 2).
+has_section(ceng111, 3).
+undergraduate(ceng111).
+undergraduate(ceng111).
+
+service_course(ceng301).
+service_course(ceng302).
+service_course(ceng305).
+service_course(ceng310).
+section_capacity(ceng111, 1, 55).
+section_capacity(ceng111, 2, 55).
+section_capacity(ceng111, 3, 62).
 hoca(ahmet_oguz_akyuz).
 busy(ahmet_oguz_akyuz, mon, 14).
 busy(ahmet_oguz_akyuz, tue, 14).
@@ -13,14 +73,7 @@ busy(ahmet_oguz_akyuz, wed, 15).
 busy(ahmet_oguz_akyuz, thu, 15).
 busy(ahmet_oguz_akyuz, thu, 16).
 hoca(ayse_nur_birturk).
-busy(ayse_nur_birturk, mon, 8).
-busy(ayse_nur_birturk, mon, 11).
-busy(ayse_nur_birturk, mon, 14).
-busy(ayse_nur_birturk, mon, 15).
-busy(ayse_nur_birturk, mon, 16).
-busy(ayse_nur_birturk, tue, 15).
-busy(ayse_nur_birturk, wed, 8).
-busy(ayse_nur_birturk, wed, 10).
+
 hoca(ayse_yasemin_seydim).
 busy(ayse_yasemin_seydim, tue, 8).
 busy(ayse_yasemin_seydim, tue, 9).
@@ -246,379 +299,355 @@ busy(yusuf_sahillioglu, tue, 11).
 busy(yusuf_sahillioglu, fri, 9).
 busy(yusuf_sahillioglu, fri, 14).
 busy(yusuf_sahillioglu, fri, 15).
-teaches(ahmet_oguz_akyuz, ceng477).
-teaches(ahmet_oguz_akyuz, ceng587).
-teaches(ayse_nur_birturk, ceng223).
-teaches(ayse_nur_birturk, ceng463).
-teaches(ayse_yasemin_seydim, ceng302).
-teaches(cevat_sener, ceng443).
-teaches(cevat_sener, ceng454).
-teaches(emre_akbas, ceng100).
-teaches(emre_akbas, ceng501).
-teaches(erol_sahin, ceng331).
-teaches(ertan_onur, ceng435).
-teaches(faruk_polat, ceng223).
-teaches(faruk_tokdemir, ceng305).
-teaches(fatos_tunay_yarman_vural, ceng466).
-teaches(fatos_tunay_yarman_vural, ceng591).
-teaches(fehime_nihan_cicekli, ceng213).
-teaches(ferda_nur_alpaslan, ceng424).
-teaches(ferda_nur_alpaslan, ceng562).
-teaches(gokturk_ucoluk, ceng111).
-teaches(hakan_yildiz, ceng570).
+
 teaches(hakan_yildiz, ceng140).
-teaches(hande_alemdar, ceng453).
-teaches(ismail_hakki_toroslu, ceng315).
-teaches(ismail_sengor_altingovde, ceng778).
-teaches(ismail_sengor_altingovde, ceng351).
-teaches(mehmet_halit_s_oguztuzun, ceng540).
-teaches(murat_manguoglu, ceng487).
-teaches(onur_tolga_sehitoglu, ceng536).
-teaches(onur_tolga_sehitoglu, ceng445).
-teaches(pelin_angin, ceng590).
-teaches(pinar_karagoz, ceng351).
-teaches(ramazan_gokberk_cinbis, ceng483).
-teaches(seyda_ertekin_bolelli, ceng499).
-teaches(seyda_ertekin_bolelli, ceng213).
-teaches(seyyit_alper_sert, ceng310).
-teaches(sinan_kalkan, ceng111).
-teaches(uluc_saranli, ceng786).
-teaches(uluc_saranli, ceng460).
-teaches(yusuf_sahillioglu, ceng301).
-teaches(yusuf_sahillioglu, ceng477).
-teaches(ahmet_oguz_akyuz, ceng477).
-teaches(ahmet_oguz_akyuz, ceng587).
-teaches(ayse_nur_birturk, ceng223).
-teaches(ayse_nur_birturk, ceng463).
-teaches(ayse_yasemin_seydim, ceng302).
-teaches(cevat_sener, ceng443).
-teaches(cevat_sener, ceng454).
-teaches(emre_akbas, ceng100).
-teaches(emre_akbas, ceng501).
-teaches(erol_sahin, ceng331).
-teaches(ertan_onur, ceng435).
-teaches(faruk_polat, ceng223).
-teaches(faruk_tokdemir, ceng305).
-teaches(fatos_tunay_yarman_vural, ceng466).
-teaches(fatos_tunay_yarman_vural, ceng591).
-teaches(fehime_nihan_cicekli, ceng213).
-teaches(ferda_nur_alpaslan, ceng424).
-teaches(ferda_nur_alpaslan, ceng562).
-teaches(gokturk_ucoluk, ceng111).
-teaches(hakan_yildiz, ceng570).
-teaches(hakan_yildiz, ceng140).
-teaches(hande_alemdar, ceng453).
-teaches(ismail_hakki_toroslu, ceng315).
-teaches(ismail_sengor_altingovde, ceng778).
-teaches(ismail_sengor_altingovde, ceng351).
-teaches(mehmet_halit_s_oguztuzun, ceng540).
-teaches(murat_manguoglu, ceng487).
-teaches(onur_tolga_sehitoglu, ceng536).
-teaches(onur_tolga_sehitoglu, ceng445).
-teaches(pelin_angin, ceng590).
-teaches(pinar_karagoz, ceng351).
-teaches(ramazan_gokberk_cinbis, ceng483).
-teaches(seyda_ertekin_bolelli, ceng499).
-teaches(seyda_ertekin_bolelli, ceng213).
-teaches(seyyit_alper_sert, ceng310).
-teaches(sinan_kalkan, ceng111).
-teaches(uluc_saranli, ceng786).
-teaches(uluc_saranli, ceng460).
-teaches(yusuf_sahillioglu, ceng301).
-teaches(yusuf_sahillioglu, ceng477).
+
 course(ceng100).
-course(ceng111).
-course(ceng111).
-course(ceng111).
-course(ceng140).
-course(ceng213).
-course(ceng213).
-course(ceng213).
-course(ceng223).
-course(ceng223).
-course(ceng223).
-course(ceng301).
-course(ceng302).
-course(ceng305).
-course(ceng310).
-course(ceng315).
-course(ceng315).
-course(ceng331).
-course(ceng351).
-course(ceng351).
-course(ceng371).
-course(ceng424).
-course(ceng435).
-course(ceng435).
-course(ceng443).
-course(ceng445).
-course(ceng453).
-course(ceng454).
-course(ceng460).
-course(ceng463).
-course(ceng466).
-course(ceng477).
-course(ceng477).
-course(ceng483).
-course(ceng487).
-course(ceng491).
-course(ceng499).
-course(ceng501).
-course(ceng514).
-course(ceng536).
-course(ceng540).
-course(ceng562).
-course(ceng570).
-course(ceng587).
-course(ceng590).
-course(ceng591).
-course(ceng778).
-course(ceng786).
 undergraduate(ceng100).
-undergraduate(ceng111).
-undergraduate(ceng111).
-undergraduate(ceng111).
-undergraduate(ceng140).
-undergraduate(ceng213).
-undergraduate(ceng213).
-undergraduate(ceng213).
-undergraduate(ceng223).
-undergraduate(ceng223).
-undergraduate(ceng223).
-undergraduate(ceng301).
-undergraduate(ceng302).
-undergraduate(ceng305).
-undergraduate(ceng310).
-undergraduate(ceng315).
-undergraduate(ceng315).
-undergraduate(ceng331).
-undergraduate(ceng351).
-undergraduate(ceng351).
-undergraduate(ceng371).
-undergraduate(ceng424).
-undergraduate(ceng435).
-undergraduate(ceng435).
-undergraduate(ceng443).
-undergraduate(ceng445).
-undergraduate(ceng453).
-undergraduate(ceng454).
-undergraduate(ceng460).
-undergraduate(ceng463).
-undergraduate(ceng466).
-undergraduate(ceng477).
-undergraduate(ceng477).
-undergraduate(ceng483).
-undergraduate(ceng487).
-undergraduate(ceng491).
-undergraduate(ceng499).
-graduate(ceng501).
-graduate(ceng514).
-graduate(ceng536).
-graduate(ceng540).
-graduate(ceng562).
-graduate(ceng570).
-graduate(ceng587).
-graduate(ceng590).
-graduate(ceng591).
-graduate(ceng778).
-graduate(ceng786).
 must(ceng100).
-must(ceng111).
-must(ceng111).
-must(ceng111).
-must(ceng140).
-must(ceng213).
-must(ceng213).
-must(ceng213).
-must(ceng223).
-must(ceng223).
-must(ceng223).
-must(ceng301).
-must(ceng302).
-must(ceng305).
-must(ceng310).
-must(ceng315).
-must(ceng315).
-must(ceng331).
-must(ceng351).
-must(ceng351).
-elective(ceng371).
-elective(ceng424).
-must(ceng435).
-must(ceng435).
-must(ceng443).
-elective(ceng445).
-elective(ceng453).
-elective(ceng454).
-elective(ceng460).
-elective(ceng463).
-elective(ceng466).
-elective(ceng477).
-elective(ceng477).
-elective(ceng483).
-elective(ceng487).
-must(ceng491).
-must(ceng499).
-elective(ceng501).
-elective(ceng514).
-elective(ceng536).
-elective(ceng540).
-elective(ceng562).
-elective(ceng570).
-must(ceng587).
-must(ceng590).
-seminar(ceng591).
-elective(ceng778).
-elective(ceng786).
 section_capacity(ceng100, 1, 175).
-section_capacity(ceng111, 1, 55).
-section_capacity(ceng111, 2, 55).
-section_capacity(ceng111, 3, 62).
+has_section(ceng100, 1).
+teaches(emre_akbas, ceng100).
+total_lecture_hours(ceng100, 2).
+
+undergraduate(ceng140).
+course(ceng140).
+must(ceng140).
 section_capacity(ceng140, 1, 40).
+total_lecture_hours(ceng140, 3).
+has_section(ceng140, 1).
+teaches(hakan_yildiz, ceng140).
+
+
+course(ceng213).
+undergraduate(ceng213).
+must(ceng213).
 section_capacity(ceng213, 1, 60).
 section_capacity(ceng213, 2, 60).
 section_capacity(ceng213, 3, 60).
-section_capacity(ceng223, 1, 76).
-section_capacity(ceng223, 2, 69).
-section_capacity(ceng223, 3, 70).
-section_capacity(ceng301, 1, 45).
-section_capacity(ceng302, 1, 27).
-section_capacity(ceng305, 1, 25).
-section_capacity(ceng310, 1, 45).
-section_capacity(ceng315, 1, 111).
-section_capacity(ceng315, 2, 102).
-section_capacity(ceng331, 1, 200).
-section_capacity(ceng351, 1, 105).
-section_capacity(ceng351, 2, 90).
-section_capacity(ceng371, 1, 50).
-section_capacity(ceng424, 1, 50).
-section_capacity(ceng435, 1, 95).
-section_capacity(ceng435, 2, 85).
-section_capacity(ceng443, 1, 54).
-section_capacity(ceng445, 1, 50).
-section_capacity(ceng453, 1, 50).
-section_capacity(ceng454, 1, 50).
-section_capacity(ceng460, 1, 50).
-section_capacity(ceng463, 1, 50).
-section_capacity(ceng466, 1, 50).
-section_capacity(ceng477, 1, 115).
-section_capacity(ceng477, 2, 90).
-section_capacity(ceng483, 1, 53).
-section_capacity(ceng487, 1, 50).
-section_capacity(ceng491, 1, 20).
-section_capacity(ceng499, 1, 55).
-section_capacity(ceng501, 1, 45).
-section_capacity(ceng514, 1, 25).
-section_capacity(ceng536, 1, 25).
-section_capacity(ceng540, 1, 26).
-section_capacity(ceng562, 1, 25).
-section_capacity(ceng570, 1, 25).
-section_capacity(ceng587, 1, 25).
-section_capacity(ceng590, 1, 30).
-section_capacity(ceng591, 1, 30).
-section_capacity(ceng778, 1, 25).
-section_capacity(ceng786, 1, 25).
-total_lecture_hours(ceng100, 2).
-total_lecture_hours(ceng111, 3).
-total_lecture_hours(ceng140, 3).
 total_lecture_hours(ceng213, 3).
-total_lecture_hours(ceng223, 3).
-total_lecture_hours(ceng301, 3).
-total_lecture_hours(ceng302, 3).
-total_lecture_hours(ceng305, 3).
-total_lecture_hours(ceng310, 3).
-total_lecture_hours(ceng315, 3).
-total_lecture_hours(ceng331, 3).
-total_lecture_hours(ceng351, 3).
-total_lecture_hours(ceng371, 3).
-total_lecture_hours(ceng424, 3).
-total_lecture_hours(ceng435, 3).
-total_lecture_hours(ceng443, 3).
-total_lecture_hours(ceng445, 3).
-total_lecture_hours(ceng453, 3).
-total_lecture_hours(ceng454, 3).
-total_lecture_hours(ceng460, 3).
-total_lecture_hours(ceng463, 3).
-total_lecture_hours(ceng466, 3).
-total_lecture_hours(ceng477, 3).
-total_lecture_hours(ceng483, 3).
-total_lecture_hours(ceng487, 3).
-total_lecture_hours(ceng491, 6).
-total_lecture_hours(ceng499, 1).
-total_lecture_hours(ceng501, 3).
-total_lecture_hours(ceng514, 3).
-total_lecture_hours(ceng536, 3).
-total_lecture_hours(ceng540, 3).
-total_lecture_hours(ceng562, 3).
-total_lecture_hours(ceng570, 3).
-total_lecture_hours(ceng587, 3).
-total_lecture_hours(ceng590, 3).
-total_lecture_hours(ceng591, 3).
-total_lecture_hours(ceng778, 3).
-total_lecture_hours(ceng786, 3).
-has_section(ceng100, 1).
-has_section(ceng111, 1).
-has_section(ceng111, 2).
-has_section(ceng111, 3).
-has_section(ceng140, 1).
 has_section(ceng213, 1).
 has_section(ceng213, 2).
 has_section(ceng213, 3).
+teaches(fehime_nihan_cicekli, ceng213).
+teaches(seyda_ertekin_bolelli, ceng213).
+
+teaches(ayse_nur_birturk, ceng223).
+teaches(faruk_polat, ceng223).
+course(ceng223).
+undergraduate(ceng223).
+must(ceng223).
+section_capacity(ceng223, 1, 76).
+section_capacity(ceng223, 2, 69).
+total_lecture_hours(ceng223, 3).
+section_capacity(ceng223, 3, 70).
 has_section(ceng223, 1).
 has_section(ceng223, 2).
 has_section(ceng223, 3).
+
+teaches(yusuf_sahillioglu, ceng301).
+course(ceng301).
+undergraduate(ceng301).
+must(ceng301).
+section_capacity(ceng301, 1, 45).
+total_lecture_hours(ceng301, 3).
 has_section(ceng301, 1).
+service_course(ceng301).
+
+teaches(ayse_yasemin_seydim, ceng302).
+course(ceng302).
+undergraduate(ceng302).
+must(ceng302).
+section_capacity(ceng302, 1, 27).
 has_section(ceng302, 1).
+service_course(ceng302).
+
+
+undergraduate(ceng305).
+course(ceng305).
+must(ceng305).
+section_capacity(ceng305, 1, 25).
+total_lecture_hours(ceng305, 3).
 has_section(ceng305, 1).
+service_course(ceng305).
+teaches(faruk_tokdemir, ceng305).
+
+
+course(ceng310).
+undergraduate(ceng310).
+teaches(seyyit_alper_sert, ceng310).
+service_course(ceng310).
 has_section(ceng310, 1).
+total_lecture_hours(ceng310, 3).
+section_capacity(ceng310, 1, 45).
+must(ceng310).
+
+teaches(ismail_hakki_toroslu, ceng315).
+course(ceng315).
+undergraduate(ceng315).
+must(ceng315).
+section_capacity(ceng315, 1, 111).
+section_capacity(ceng315, 2, 102).
+total_lecture_hours(ceng315, 3).
 has_section(ceng315, 1).
 has_section(ceng315, 2).
-has_section(ceng331, 1).
+
+
+% course(ceng331).
+% undergraduate(ceng331).
+% must(ceng331).
+% section_capacity(ceng331, 1, 200).
+% total_lecture_hours(ceng331, 3).
+% has_section(ceng331, 1).
+% teaches(erol_sahin, ceng331).
+
+
+
+course(ceng351).
+undergraduate(ceng351).
+must(ceng351).
+section_capacity(ceng351, 1, 105).
+section_capacity(ceng351, 2, 90).
+total_lecture_hours(ceng351, 3).
 has_section(ceng351, 1).
 has_section(ceng351, 2).
+teaches(ismail_sengor_altingovde, ceng351).
+teaches(pinar_karagoz, ceng351).
+
+
+course(ceng371).
+undergraduate(ceng371).
+elective(ceng371).
+section_capacity(ceng371, 1, 50).
+total_lecture_hours(ceng371, 3).
+teaches(murat_manguoglu,ceng371).
 has_section(ceng371, 1).
+
+
+course(ceng424).
+elective(ceng424).
+section_capacity(ceng424, 1, 50).
+total_lecture_hours(ceng424, 3).
 has_section(ceng424, 1).
+teaches(ferda_nur_alpaslan, ceng424).
+undergraduate(ceng424).
+
+
+course(ceng435).
+undergraduate(ceng435).
+must(ceng435).
+section_capacity(ceng435, 1, 95).
+section_capacity(ceng435, 2, 85).
+total_lecture_hours(ceng435, 3).
 has_section(ceng435, 1).
 has_section(ceng435, 2).
+teaches(ertan_onur, ceng435).
+
+
+teaches(cevat_sener, ceng443).
+course(ceng443).
+undergraduate(ceng443).
+must(ceng443).
+section_capacity(ceng443, 1, 54).
+total_lecture_hours(ceng443, 3).
 has_section(ceng443, 1).
+
+
+
+course(ceng445).
+undergraduate(ceng445).
+elective(ceng445).
+section_capacity(ceng445, 1, 50).
+total_lecture_hours(ceng445, 3).
 has_section(ceng445, 1).
+teaches(onur_tolga_sehitoglu, ceng445).
+
+
+teaches(hande_alemdar, ceng453).
+course(ceng453).
+undergraduate(ceng453).
+elective(ceng453).
+section_capacity(ceng453, 1, 50).
+total_lecture_hours(ceng453, 3).
 has_section(ceng453, 1).
+
+
+
+course(ceng454).
+elective(ceng454).
+section_capacity(ceng454, 1, 50).
+total_lecture_hours(ceng454, 3).
 has_section(ceng454, 1).
+teaches(cevat_sener, ceng454).
+
+
+
+
+course(ceng460).
+undergraduate(ceng460).
+elective(ceng460).
+section_capacity(ceng460, 1, 50).
+total_lecture_hours(ceng460, 3).
 has_section(ceng460, 1).
+teaches(uluc_saranli, ceng460).
+
+
+teaches(ayse_nur_birturk, ceng463).
+course(ceng463).
+undergraduate(ceng463).
+elective(ceng463).
+section_capacity(ceng463, 1, 50).
+total_lecture_hours(ceng463, 3).
 has_section(ceng463, 1).
+
+
+course(ceng466).
+undergraduate(ceng466).
+elective(ceng466).
+section_capacity(ceng466, 1, 50).
 has_section(ceng466, 1).
+total_lecture_hours(ceng466, 3).
+teaches(fatos_tunay_yarman_vural, ceng466).
+
+course(ceng477).
+undergraduate(ceng477).
+elective(ceng477).
+section_capacity(ceng477, 1, 115).
+section_capacity(ceng477, 2, 90).
+total_lecture_hours(ceng477, 3).
 has_section(ceng477, 1).
 has_section(ceng477, 2).
+teaches(ahmet_oguz_akyuz, ceng477).
+teaches(yusuf_sahillioglu, ceng477).
+
+course(ceng483).
+teaches(ramazan_gokberk_cinbis, ceng483).
+undergraduate(ceng483).
+elective(ceng483).
+section_capacity(ceng483, 1, 53).
+total_lecture_hours(ceng483, 3).
 has_section(ceng483, 1).
+
+
+teaches(murat_manguoglu, ceng487).
+course(ceng487).
+undergraduate(ceng487).
+elective(ceng487).
+section_capacity(ceng487, 1, 50).
+total_lecture_hours(ceng487, 3).
 has_section(ceng487, 1).
-has_section(ceng491, 1).
+
+
+
+% course(ceng491).
+% must(ceng491).
+% section_capacity(ceng491, 1, 20).
+% total_lecture_hours(ceng491, 6).
+% has_section(ceng491, 1).
+
+
+
 has_section(ceng499, 1).
+teaches(seyda_ertekin_bolelli, ceng499).
+course(ceng499).
+undergraduate(ceng499).
+must(ceng499).
+section_capacity(ceng499, 1, 55).
+total_lecture_hours(ceng499, 1).
+
+
+teaches(emre_akbas, ceng501).
+course(ceng501).
+graduate(ceng501).
+elective(ceng501).
+section_capacity(ceng501, 1, 45).
 has_section(ceng501, 1).
-has_section(ceng514, 1).
+
+
+
+% course(ceng514).
+% graduate(ceng514).
+% elective(ceng514).
+% total_lecture_hours(ceng514, 3).
+% section_capacity(ceng514, 1, 25).
+% has_section(ceng514, 1).
+
+
+course(ceng536).
 has_section(ceng536, 1).
+teaches(onur_tolga_sehitoglu, ceng536).
+graduate(ceng536).
+elective(ceng536).
+section_capacity(ceng536, 1, 25).
+total_lecture_hours(ceng536, 3).
+
+course(ceng540).
+teaches(mehmet_halit_s_oguztuzun, ceng540).
+graduate(ceng540).
+elective(ceng540).
+section_capacity(ceng540, 1, 26).
+total_lecture_hours(ceng540, 3).
 has_section(ceng540, 1).
+
+course(ceng562).
+teaches(ferda_nur_alpaslan, ceng562).
+graduate(ceng562).
+elective(ceng562).
+section_capacity(ceng562, 1, 25).
+total_lecture_hours(ceng562, 3).
 has_section(ceng562, 1).
+
+course(ceng570).
+graduate(ceng570).
+elective(ceng570).
+section_capacity(ceng570, 1, 25).
+total_lecture_hours(ceng570, 3).
+section_capacity(ceng587, 1, 25).
 has_section(ceng570, 1).
+teaches(hakan_yildiz, ceng570).
+
+course(ceng587).
+total_lecture_hours(ceng587, 3).
 has_section(ceng587, 1).
+teaches(ahmet_oguz_akyuz, ceng587).
+graduate(ceng587).
+must(ceng587).
+section_capacity(ceng587, 1, 25).
+
+course(ceng590).
 has_section(ceng590, 1).
+teaches(pelin_angin, ceng590).
+graduate(ceng590).
+must(ceng590).
+section_capacity(ceng590, 1, 30).
+total_lecture_hours(ceng590, 3).
+
+course(ceng591).
 has_section(ceng591, 1).
+teaches(fatos_tunay_yarman_vural, ceng591).
+graduate(ceng591).
+seminar(ceng591).
+section_capacity(ceng591, 1, 30).
+total_lecture_hours(ceng591, 3).
+
+
+
+
+course(ceng778).
+teaches(ismail_sengor_altingovde, ceng778).
+graduate(ceng778).
+elective(ceng778).
+section_capacity(ceng778, 1, 25).
+total_lecture_hours(ceng778, 3).
 has_section(ceng778, 1).
+
+
+course(ceng786).
 has_section(ceng786, 1).
-service_course(ceng301).
-service_course(ceng302).
-service_course(ceng305).
-service_course(ceng310).
+teaches(uluc_saranli, ceng786).
+graduate(ceng786).
+elective(ceng786).
+section_capacity(ceng786, 1, 25).
+total_lecture_hours(ceng786, 3).
 
-place(bmb1).
-place(bmb2).
-place(bmb3).
-place(bmb4).
-place(bmb5).
-place(bmb_a101).
 
-capacity(bmb1,180).
-capacity(bmb2,80).
-capacity(bmb3,80).
-capacity(bmb4,60).
-capacity(bmb5,60).
-capacity(bmb_a101,25).

@@ -9,13 +9,18 @@
     teaches(HOCA, COURSE), 
     has_section(COURSE, SECTION).
 
-:- #count {A : assignment(A, _, _, _, _, _)} < 30. % I couldn't find how to force assignment count to be the biggest number possible, for now I just put 35
+% :- #count {A : assignment(A, _, _, _, _, _)} < 30. % I couldn't find how to force assignment count to be the biggest number possible, for now I just put 35
 
 % the capacity of the classroom should be greater than or equal to the number of students in the course-section pair. by Ege
 :-  assignment(COURSE, _, _, PLACE, _, SECTION),
     section_capacity(COURSE, SECTION, CAPACITY),
     capacity(PLACE, CAPACITY2),
     CAPACITY > CAPACITY2.
+
+% a section is thaugt by only one instructor. by Ege
+:-  assignment(COURSE, _, _, _, HOCA1, SECTION),
+    assignment(COURSE, _, _, _, HOCA2, SECTION),
+    HOCA1 != HOCA2.
 
 % One classroom cannot be occupied by more than one course at a time. originally by Ege, rewritten by Berkay
 :-  day(DAY), hour(HOUR), place(PLACE), #count{COURSE, HOCA, SECTION: assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} > 1.
@@ -43,31 +48,8 @@
 :-  total_lecture_hours(COURSE, HOURS), has_section(COURSE, SECTION),
     #count{DAY, HOUR: assignment(COURSE, DAY, HOUR, _, _, SECTION)} != HOURS.
 
-% % One classroom cannot be occupied by more than one course at a time. by anil eren gocer
-% COURSE1 = COURSE2, HOCA1 = HOCA2, SECTION1 = SECTION2 :- 
-%     assignment(COURSE1, DAY1, HOUR1, PLACE1, HOCA1, SECTION1), 
-%     assignment(COURSE2, DAY2, HOUR2, PLACE2, HOCA2, SECTION2),
-%     DAY1 = DAY2,
-%     HOUR1 = HOUR2,
-%     PLACE1 = PLACE2.
 
-% % An instructor can give at most one course at a time. by anil eren gocer
-% COURSE1 = COURSE2, SECTION1 = SECTION2 :-
-%     assignment(COURSE1, DAY1, HOUR1, PLACE1, HOCA1, SECTION1),
-%     assignment(COURSE2, DAY2, HOUR2, PLACE2, HOCA2, SECTION2),
-%     DAY1 = DAY2,
-%     HOUR1 = HOUR2,
-%     HOCA1 = HOCA2.
-
-% % An instructor don't give a course in their busy hour. by anil eren gocer
-% not busy(HOCA, DAY, HOUR) :- 
-%     assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION),
-%     course(COURSE), 
-%     day(DAY), 
-%     hour(HOUR), 
-%     place(PLACE), 
-%     teaches(HOCA, COURSE), 
-%     has_section(COURSE, SECTION). 
+% Each of the instructors that teaches the same course must have at least one section by emirhan
 
 % Hard constraints on places: 
 %1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
