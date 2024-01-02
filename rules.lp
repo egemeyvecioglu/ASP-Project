@@ -53,6 +53,9 @@
     COURSE!=ceng331,
     PLACE=g101.
 
+%If a teacher teaches a course, he/she must be assigned to at least one section of that course. by Ege
+:-  teaches(HOCA, COURSE),
+    not assignment(COURSE, _, _, _, HOCA, _).
 
 % Each of the instructors that teaches the same course must have at least one section by emirhan
 
