@@ -48,6 +48,11 @@
 :-  total_lecture_hours(COURSE, HOURS), has_section(COURSE, SECTION),
     #count{DAY, HOUR: assignment(COURSE, DAY, HOUR, _, _, SECTION)} != HOURS.
 
+% assign g101 for ceng331, by Kadir
+:-  assignment(COURSE, DAY, HOUR1, PLACE, HOCA, SECTION),
+    COURSE!=ceng331,
+    PLACE=g101.
+
 
 % Each of the instructors that teaches the same course must have at least one section by emirhan
 
