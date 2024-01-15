@@ -1,4 +1,14 @@
-#include "facts.lp".
+#include "facts.lp". % all the data is in this file
+
+% Hard constraints on places: 
+%1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
+%2. One classroom cannot be occupied by more than one course at a time.					
+%3. If a non-service undergraduate level course has splitted into three sections, one hour of lecture must be conducted at BMB1 at least					
+%4. If a non-service undergraduate level course has splitted into three sections, one hour must be conducted at BMB1 at least					
+					
+% Hard constraints on instructors: 
+%1. An instructor can give at most one course at a time.
+%2. An instructor don't give a course in their busy hour.
 
 % Choice rule for assignment by Ege
 {assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} :- 
@@ -9,15 +19,13 @@
     teaches(HOCA, COURSE), 
     has_section(COURSE, SECTION).
 
-% :- #count {A : assignment(A, _, _, _, _, _)} < 30. % I couldn't find how to force assignment count to be the biggest number possible, for now I just put 35
-
 % the capacity of the classroom should be greater than or equal to the number of students in the course-section pair. by Ege
 :-  assignment(COURSE, _, _, PLACE, _, SECTION),
     section_capacity(COURSE, SECTION, CAPACITY),
     capacity(PLACE, CAPACITY2),
     CAPACITY > CAPACITY2.
 
-% a section is thaugt by only one instructor. by Ege
+% a section is tought by only one instructor. by Ege
 :-  assignment(COURSE, _, _, _, HOCA1, SECTION),
     assignment(COURSE, _, _, _, HOCA2, SECTION),
     HOCA1 != HOCA2.
@@ -25,14 +33,14 @@
 % One classroom cannot be occupied by more than one course at a time. originally by Ege, rewritten by Berkay
 :-  day(DAY), hour(HOUR), place(PLACE), #count{COURSE, HOCA, SECTION: assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} > 1.
 
-% % An instructor don't give a course in their busy hour. by Ege, edited by Berkay
+% An instructor don't give a course in their busy hour. by Ege, edited by Berkay
 :- assignment(_, DAY, HOUR, _, HOCA, _),
     busy(HOCA, DAY, HOUR).
 
 % An instructor can give at most one course at a time. originally by Ege, rewritten by Berkay
 :-  day(DAY), hour(HOUR), hoca(HOCA), #count{COURSE, PLACE, SECTION: assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} > 1.
 
-%% A course-section pair can not happen in more than one place at a time. by Ege
+% A course-section pair can not happen in more than one place at a time. by Ege
 :-  assignment(COURSE, DAY, HOUR, PLACE1, _, SECTION),
     assignment(COURSE, DAY, HOUR, PLACE2, _, SECTION),
     PLACE1 != PLACE2.
@@ -68,7 +76,7 @@
     DAY2 != DAY3,
     DAY1 != DAY3.
 
-% % if  total_lecture_hours is 3, then there should be two consecutive hours. by Emirhan
+% if total_lecture_hours is 3, then there should be two consecutive hours. by Emirhan
 :-  total_lecture_hours(COURSE, 3),
     assignment(COURSE, DAY1, HOUR1, _, _, SECTION),
     assignment(COURSE, DAY2, HOUR2, _, _, SECTION),
@@ -76,7 +84,7 @@
     DAY1 == DAY2,
     | HOUR1 - HOUR2 | > 1.
 
-% % if two consecutive hours are assigned, there should be in the same place. by Emirhan
+% if two consecutive hours are assigned, there should be in the same place. by Emirhan
 :-  assignment(COURSE, DAY1, HOUR1, PLACE1, _, SECTION),
     assignment(COURSE, DAY2, HOUR2, PLACE2, _, SECTION),
     DAY1 == DAY2,
@@ -99,15 +107,7 @@
     assignment(COURSE, DAY, HOUR2, _, _, SECTION),
     | HOUR1 - HOUR2 | > 2.
 
-%3 hours of undergraduate courses' all lecture hours should not be in the same day. by Ege
-% :-  total_lecture_hours(COURSE, 3),
-%     undergraduate(COURSE),
-%     assignment(COURSE, DAY1, _, _, _, SECTION),
-%     assignment(COURSE, DAY1, _, _, _, SECTION),
-%     assignment(COURSE, DAY2, _, _, _, SECTION),
-%     DAY1 == DAY2.
-    
-%4. If a non-service undergraduate level course has splitted into three sections, one hour must be conducted at BMB1 at least					
+%If a non-service undergraduate level course has splitted into three sections, one hour must be conducted at BMB1 at least					
 :-  undergraduate(COURSE),
     not service_course(COURSE),
     assignment(COURSE, _, _, PLACE, _, SECTION),
@@ -134,7 +134,7 @@
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 1)} == TOTAL_HOUR,
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 2)} < TOTAL_HOUR.
 
-% % courses offered to the same cohort should have fewer gaps (time slots without lectures) between them
+% courses offered to the same cohort should have fewer gaps (time slots without lectures) between them
 :-  undergraduate(COURSE1),
     undergraduate(COURSE2),
     grade(COURSE1, GRADE),
@@ -145,14 +145,5 @@
 
 
 
-% Hard constraints on places: 
-%1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
-%2. One classroom cannot be occupied by more than one course at a time.					
-%3. If a non-service undergraduate level course has splitted into three sections, one hour of lecture must be conducted at BMB1 at least					
-%4. If a non-service undergraduate level course has splitted into three sections, one hour must be conducted at BMB1 at least					
-					
-% Hard constraints on instructors: 
-%1. An instructor can give at most one course at a time.
-%2. An instructor don't give a course in their busy hour.
 
 #show assignment/6.
