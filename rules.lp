@@ -63,7 +63,6 @@
     assignment(COURSE, DAY1, _, _, _, SECTION),
     assignment(COURSE, DAY2, _, _, _, SECTION),
     assignment(COURSE, DAY3, _, _, _, SECTION),
-    must(COURSE),
     undergraduate(COURSE),
     DAY1 != DAY2,
     DAY2 != DAY3,
@@ -73,7 +72,6 @@
 :-  total_lecture_hours(COURSE, 3),
     assignment(COURSE, DAY1, HOUR1, _, _, SECTION),
     assignment(COURSE, DAY2, HOUR2, _, _, SECTION),
-    must(COURSE),
     undergraduate(COURSE),
     DAY1 == DAY2,
     | HOUR1 - HOUR2 | > 1.
