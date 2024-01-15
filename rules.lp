@@ -115,7 +115,7 @@
     #count {COURSE,SECTION : assignment(COURSE, _, _, bmb1, _, SECTION)} < 1.
 
 % If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 at least.
-% If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 for at least one section.
+% If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 for at least one section. by Ege, Anıl, Kadir
 :-  undergraduate(COURSE),
     not service_course(COURSE),
     assignment(COURSE, _, _, PLACE, _, SECTION),
@@ -134,15 +134,19 @@
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 1)} == TOTAL_HOUR,
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 2)} < TOTAL_HOUR.
 
-% courses offered to the same cohort should have fewer gaps (time slots without lectures) between them
+% courses offered to the same cohort should have fewer gaps (time slots without lectures) between them. by Ege, Anıl, Kadir
 :-  undergraduate(COURSE1),
     undergraduate(COURSE2),
     grade(COURSE1, GRADE),
     grade(COURSE2, GRADE),
     assignment(COURSE1, DAY, HOUR1, _, _, _),
     assignment(COURSE2, DAY, HOUR2, _, _, _),
-    | HOUR1 - HOUR2 | > 2.
+    COURSE1 != COURSE2,
+    | HOUR1 - HOUR2 | > 3.
 
+% No lecture at 12.40. by Ege
+:-  assignment(_, _, HOUR, _, _, _),
+    HOUR == 12.
 
 
 
