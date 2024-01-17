@@ -188,5 +188,14 @@ day_penalty(HOCA, PENALTY) :-
     HOUR == 12.
 
 
+% Same sections for a year's courses shouldn't conflict. by Ege
+:-  assignment(COURSE1, DAY, HOUR1, _, _, SECTION),
+    assignment(COURSE2, DAY, HOUR2, _, _, SECTION),
+    grade(COURSE1, GRADE),
+    grade(COURSE2, GRADE),
+    COURSE1 != COURSE2,
+    HOUR1 == HOUR2.
+
+
 
 #show assignment/6.
