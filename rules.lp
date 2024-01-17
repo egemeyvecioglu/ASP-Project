@@ -155,6 +155,19 @@
           undergraduate(COURSE2),
           COURSE1 != COURSE2}.
 
+% minimize the number of gaps between classes given by the same instructor. by Emirhan
+
+#minimize{| HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | : 
+          assignment(COURSE, DAY, HOUR1, _, HOCA, SECTION1), 
+          assignment(COURSE, DAY, HOUR2, _, HOCA, SECTION2),
+          SECTION1 != SECTION2}.
+
+#minimize{| HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | : 
+          assignment(COURSE1, DAY, HOUR1, _, HOCA, _), 
+          assignment(COURSE2, DAY, HOUR2, _, HOCA, _),
+          COURSE1 != COURSE2}.
+
+
 % No lecture at 12.40. by Ege
 :-  assignment(_, _, HOUR, _, _, _),
     HOUR == 12.
