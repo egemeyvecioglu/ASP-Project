@@ -148,7 +148,11 @@
 
 #minimize{| HOUR1 - HOUR2 | : 
           assignment(COURSE1, DAY, HOUR1, _, _, _), 
-          assignment(COURSE2, DAY, HOUR2, _, _, _), 
+          assignment(COURSE2, DAY, HOUR2, _, _, _),
+          grade(COURSE1, GRADE),
+          grade(COURSE2, GRADE),
+          undergraduate(COURSE1),
+          undergraduate(COURSE2),
           COURSE1 != COURSE2}.
 
 % No lecture at 12.40. by Ege
