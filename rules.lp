@@ -135,14 +135,21 @@
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 2)} < TOTAL_HOUR.
 
 % courses offered to the same cohort should have fewer gaps (time slots without lectures) between them. by Ege, Anıl, Kadir
-:-  undergraduate(COURSE1),
-    undergraduate(COURSE2),
-    grade(COURSE1, GRADE),
-    grade(COURSE2, GRADE),
-    assignment(COURSE1, DAY, HOUR1, _, _, _),
-    assignment(COURSE2, DAY, HOUR2, _, _, _),
-    COURSE1 != COURSE2,
-    | HOUR1 - HOUR2 | > 3.
+% :-  undergraduate(COURSE1),
+%     undergraduate(COURSE2),
+%     grade(COURSE1, GRADE),
+%     grade(COURSE2, GRADE),
+%     assignment(COURSE1, DAY, HOUR1, _, _, _),
+%     assignment(COURSE2, DAY, HOUR2, _, _, _),
+%     COURSE1 != COURSE2,
+%     | HOUR1 - HOUR2 | > 3.
+
+% minimize the number of gaps between courses offered to the same cohort. by Emirhan
+
+#minimize{| HOUR1 - HOUR2 | : 
+          assignment(COURSE1, DAY, HOUR1, _, _, _), 
+          assignment(COURSE2, DAY, HOUR2, _, _, _), 
+          COURSE1 != COURSE2}.
 
 % No lecture at 12.40. by Ege
 :-  assignment(_, _, HOUR, _, _, _),
