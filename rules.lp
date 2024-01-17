@@ -196,6 +196,14 @@ day_penalty(HOCA, PENALTY) :-
     COURSE1 != COURSE2,
     HOUR1 == HOUR2.
 
+% No 315 or 351 right before or after 331 because 331 lecture is at another building. by Ege
+:- assignment(ceng331, DAY, HOUR1, _, _, _),
+   assignment(ceng315, DAY, HOUR2, _, _, _),
+    | HOUR1 - HOUR2 | == 1.
+
+:- assignment(ceng331, DAY, HOUR1, _, _, _),
+   assignment(ceng351, DAY, HOUR2, _, _, _),
+    | HOUR1 - HOUR2 | == 1.
 
 
 #show assignment/6.
