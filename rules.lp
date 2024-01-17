@@ -185,11 +185,10 @@ day_penalty(HOCA, PENALTY) :-
 
 
 #minimize{PENALTY_1 + PENALTY_2 + PENALTY_3 + PENALTY_4 :
-          grade(GRADE),
-          cohort_gap_penalty(GRADE, PENALTY_1),
-          instructor_gap_same_sec_penalty(HOCA, PENALTY_2),
-          instructor_gap_diff_sec_penalty(HOCA, PENALTY_3),
-          day_penalty(HOCA, PENALTY_4)}.
+          cohort_gap_penalty(_, PENALTY_1),
+          instructor_gap_same_sec_penalty(_, PENALTY_2),
+          instructor_gap_diff_sec_penalty(_, PENALTY_3),
+          day_penalty(_, PENALTY_4)}.
 
           
 
