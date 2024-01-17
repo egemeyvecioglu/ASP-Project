@@ -153,26 +153,29 @@
 
 % minimize the number of gaps between courses offered to the same cohort. by Emirhan
 
-#minimize{| HOUR1 - HOUR2 | : 
+cohort_gap_penalty(GRADE, PENALTY) :- 
           assignment(COURSE1, DAY, HOUR1, _, _, _), 
           assignment(COURSE2, DAY, HOUR2, _, _, _),
           grade(COURSE1, GRADE),
           grade(COURSE2, GRADE),
           undergraduate(COURSE1),
           undergraduate(COURSE2),
-          COURSE1 != COURSE2}.
+          COURSE1 != COURSE2,
+          PENALTY = | HOUR1 - HOUR2 |.
 
 % minimize the number of gaps between classes given by the same instructor. by Emirhan
 
-#minimize{| HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | : 
-          assignment(COURSE, DAY, HOUR1, _, HOCA, SECTION1), 
-          assignment(COURSE, DAY, HOUR2, _, HOCA, SECTION2),
-          SECTION1 != SECTION2}.
+instructor_gap_same_sec_penalty(HOCA, PENALTY) :- 
+    assignment(COURSE, DAY, HOUR1, _, HOCA, SECTION1), 
+    assignment(COURSE, DAY, HOUR2, _, HOCA, SECTION2),
+    SECTION1 != SECTION2,
+    PENALTY = | HOUR1 - HOUR2 |.
 
-#minimize{| HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | + | HOUR1 - HOUR2 | : 
-          assignment(COURSE1, DAY, HOUR1, _, HOCA, _), 
-          assignment(COURSE2, DAY, HOUR2, _, HOCA, _),
-          COURSE1 != COURSE2}.
+instructor_gap_diff_sec_penalty(HOCA, PENALTY) :- 
+    assignment(COURSE1, DAY, HOUR1, _, HOCA, _), 
+    assignment(COURSE2, DAY, HOUR2, _, HOCA, _),
+    COURSE1 != COURSE2,
+    PENALTY = | HOUR1 - HOUR2 |.
 
 % minimize the number of days that an instructor has to be in the campus. by Emirhan
 
@@ -180,7 +183,14 @@ day_penalty(HOCA, PENALTY) :-
     assignment(_, DAY1, _, _, HOCA, _),
     PENALTY = #count{DAY2 : assignment(_, DAY2, _, _, HOCA, _), DAY1 != DAY2}.
 
-#minimize{PENALTY : assignment(_, _, _, _, HOCA, _), day_penalty(HOCA, PENALTY)}.
+
+#minimize{PENALTY_1 + PENALTY_2 + PENALTY_3 + PENALTY_4 :
+          grade(GRADE),
+          cohort_gap_penalty(GRADE, PENALTY_1),
+          instructor_gap_same_sec_penalty(HOCA, PENALTY_2),
+          instructor_gap_diff_sec_penalty(HOCA, PENALTY_3),
+          day_penalty(HOCA, PENALTY_4)}.
+
           
 
 % No lecture at 12.40. by Ege
