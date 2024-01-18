@@ -537,7 +537,6 @@ grade(ceng466,4). %means this is fourth year course
 
 course(ceng477).
 undergraduate(ceng477).
-elective(ceng477).
 section_capacity(ceng477, 1, 115).
 section_capacity(ceng477, 2, 90).
 total_lecture_hours(ceng477, 3).

@@ -1,5 +1,7 @@
 #include "facts.lp". % all the data is in this file
 
+% -------------------------- HARD CONSTRAINTS --------------------------
+
 % Hard constraints on places: 
 %1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
 %2. One classroom cannot be occupied by more than one course at a time.					
@@ -115,7 +117,7 @@
     #count {COURSE,SECTION : assignment(COURSE, _, _, bmb1, _, SECTION)} < 1.
 
 % If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 at least.
-% If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 for at least one section.
+% If a non-service undergraduate level course has splitted into two sections,all hours must be conducted at BMB1 for at least one section. by Ege, Anıl, Kadir
 :-  undergraduate(COURSE),
     not service_course(COURSE),
     assignment(COURSE, _, _, PLACE, _, SECTION),
@@ -134,20 +136,94 @@
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 1)} == TOTAL_HOUR,
     #count {COURSE : assignment(COURSE, _, _, bmb1, _, 2)} < TOTAL_HOUR.
 
-% courses offered to the same cohort should have fewer gaps (time slots without lectures) between them
-:-  undergraduate(COURSE1),
-    undergraduate(COURSE2),
-    grade(COURSE1, GRADE),
-    grade(COURSE2, GRADE),
-    assignment(COURSE1, DAY, HOUR1, _, _, _),
-    assignment(COURSE2, DAY, HOUR2, _, _, _),
-    COURSE1 != COURSE2,
-    | HOUR1 - HOUR2 | > 3.
-
 % No lecture at 12.40. by Ege
 :-  assignment(_, _, HOUR, _, _, _),
     HOUR == 12.
 
+% courses offered to the same cohort should have fewer gaps (time slots without lectures) between them. by Ege, Anıl, Kadir
+% :-  undergraduate(COURSE1),
+%     undergraduate(COURSE2),
+%     not service_course(COURSE1),
+%     not service_course(COURSE2),
+%     grade(COURSE1, GRADE),
+%     grade(COURSE2, GRADE),
+%     assignment(COURSE1, DAY, HOUR1, _, _, _),
+%     assignment(COURSE2, DAY, HOUR2, _, _, _),
+%     COURSE1 != COURSE2,
+%     | HOUR1 - HOUR2 | > 3.
 
+
+% Same sections for a year's courses shouldn't conflict. by Ege
+:-  undergraduate(COURSE1),
+    undergraduate(COURSE2),
+    must(COURSE1),
+    must(COURSE2),
+    grade(COURSE1, GRADE),
+    grade(COURSE2, GRADE),
+    assignment(COURSE1, DAY, HOUR1, _, _, SECTION),
+    assignment(COURSE2, DAY, HOUR2, _, _, SECTION),
+    COURSE1 != COURSE2,
+    | HOUR1 - HOUR2 | < 1.
+
+% No 315 or 351 right before or after 331 because 331 lecture is at another building. by Ege
+:- assignment(ceng331, DAY, HOUR1, _, _, _),
+   assignment(ceng315, DAY, HOUR2, _, _, _),
+    | HOUR1 - HOUR2 | == 1.
+
+:- assignment(ceng331, DAY, HOUR1, _, _, _),
+   assignment(ceng351, DAY, HOUR2, _, _, _),
+    | HOUR1 - HOUR2 | == 1.
+
+
+
+% -------------------------- SOFT CONSTRAINTS --------------------------
+% 1. Minimize the number of gaps between courses offered to the same cohort
+% 2. Minimize the number of gaps between classes given by the same instructor
+% 3. Minimize the number of days that an instructor has to be in the campus
+
+% minimize the number of gaps between courses offered to the same cohort. by Emirhan and Ege
+cohort_gap_penalty(GRADE, PENALTY) :- 
+					undergraduate(COURSE1),
+					undergraduate(COURSE2),
+					not service_course(COURSE1),
+					not service_course(COURSE2),
+					grade(COURSE1, GRADE),
+					grade(COURSE2, GRADE),
+					assignment(COURSE1, DAY, HOUR1, _, _, _),
+					assignment(COURSE2, DAY, HOUR2, _, _, _),
+					COURSE1 != COURSE2,
+					| HOUR1 - HOUR2 | > 3,
+          PENALTY = | HOUR1 - HOUR2 |.
+
+% minimize the number of gaps between classes given by the same instructor. by Emirhan
+
+% instructor_gap_same_sec_penalty(HOCA, PENALTY) :- 
+%     assignment(COURSE, DAY, HOUR1, _, HOCA, SECTION1), 
+%     assignment(COURSE, DAY, HOUR2, _, HOCA, SECTION2),
+%     SECTION1 != SECTION2,
+%     PENALTY = | HOUR1 - HOUR2 |.
+
+% instructor_gap_diff_sec_penalty(HOCA, PENALTY) :- 
+%     assignment(COURSE1, DAY, HOUR1, _, HOCA, _), 
+%     assignment(COURSE2, DAY, HOUR2, _, HOCA, _),
+%     COURSE1 != COURSE2,
+%     PENALTY = | HOUR1 - HOUR2 |.
+
+% minimize the number of days that an instructor has to be in the campus. by Emirhan and Ege
+day_penalty_different_courses(HOCA, PENALTY) :- 
+    assignment(COURSE1, DAY1, _, _, HOCA, _),
+    PENALTY = #count{DAY2 : assignment(COURSE2, DAY2, _, _, HOCA, _), DAY1 != DAY2, COURSE1 != COURSE2}.
+
+day_penalty_different_sections(HOCA, PENALTY) :- 
+		assignment(COURSE, DAY1, _, _, HOCA, SECTION1),
+		PENALTY = #count{DAY2 : assignment(COURSE, DAY2, _, _, HOCA, SECTION2), DAY1 != DAY2, SECTION1 != SECTION2}.
+
+
+#minimize{PENALTY_1 + PENALTY_2 + PENALTY_3 :
+          cohort_gap_penalty(_, PENALTY_1),
+					day_penalty_different_courses(_, PENALTY_2),
+					day_penalty_different_sections(_, PENALTY_3)}.
+
+          
 
 #show assignment/6.
