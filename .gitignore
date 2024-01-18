@@ -1,2 +1,8 @@
 .DS_Store
-.vscode/settings.json
+.MacOSX
+.vscode
+./*.py
+./*.csv
+./group_A
+*.xlsx
+./The University Course Timetabling Problem.pdf
