@@ -6,7 +6,7 @@
 %1. Non-service undergraduate level courses cannot occupy a classroom longer than 2 hours consecutively.					
 %2. One classroom cannot be occupied by more than one course at a time.					
 %3. If a non-service undergraduate level course has splitted into three sections, one hour of lecture must be conducted at BMB1 at least					
-%4. If a non-service undergraduate level course has splitted into three sections, one hour must be conducted at BMB1 at least					
+%4. If a non-service undergraduate level course has splitted into two sections, all hours must be conducted at BMB1 at least					
 					
 % Hard constraints on instructors: 
 %1. An instructor can give at most one course at a time.
@@ -14,7 +14,7 @@
 
 % In addition to the given hard constraints, we added the others. All of them are listed below.
 
-% Choice rule for assignment by Ege
+% Choice rule for assignment by Ege. This is the main rule that we use to create schedules with different assignments.
 {assignment(COURSE, DAY, HOUR, PLACE, HOCA, SECTION)} :- 
     course(COURSE), 
     day(DAY), 
@@ -164,10 +164,9 @@
 
 % -------------------------- SOFT CONSTRAINTS --------------------------
 % 1. Minimize the number of gaps between courses offered to the same cohort
-% 2. Minimize the number of gaps between classes given by the same instructor
-% 3. Minimize the number of days that an instructor has to be in the campus
+% 2. Minimize the number of days that an instructor has to be in the campus
 
-% minimize the number of gaps between courses offered to the same cohort. by everyone
+% Minimize the number of gaps between courses offered to the same cohort for undergraduate courses. by everyone
 cohort_gap_penalty(GRADE, PENALTY) :- 
 					undergraduate(COURSE1),
 					undergraduate(COURSE2),
@@ -183,14 +182,14 @@ cohort_gap_penalty(GRADE, PENALTY) :-
 
 #minimize{PENALTY_1	:	cohort_gap_penalty(_, PENALTY_1)}.
 
-%minimize the number of days that an instructor has to be in the campus. by Emirhan and Ege
-day_penalty_different_courses(HOCA, PENALTY) :- 
+% Minimize the number of days that an instructor has to be in the campus. by Emirhan and Ege
+day_penalty_different_courses(HOCA, PENALTY) :- % For the different courses of the same instructor
     assignment(COURSE1, DAY1, _, _, HOCA, _),
     PENALTY = #count{DAY2 : assignment(COURSE2, DAY2, _, _, HOCA, _), DAY1 != DAY2, COURSE1 != COURSE2}.
 
 #minimize{PENALTY_2 :	day_penalty_different_courses(_, PENALTY_2)}.
 
-day_penalty_different_sections(HOCA, PENALTY) :- 
+day_penalty_different_sections(HOCA, PENALTY) :- % For the different sections of the same instructor
 		assignment(COURSE, DAY1, _, _, HOCA, SECTION1),
 		PENALTY = #count{DAY2 : assignment(COURSE, DAY2, _, _, HOCA, SECTION2), DAY1 != DAY2, SECTION1 != SECTION2}.
 
