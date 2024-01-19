@@ -8,6 +8,12 @@
 clingo rules.lp <NUMBER_OF_SCHEDULE> --quiet=1 --opt-mode=optN > out.txt
 ```
 
+For example, if you want to generate 500 possible schedules, you can use the following command:
+
+```
+clingo rules.lp 500 --quiet=1 --opt-mode=optN > out.txt
+```
+
 This command will direct the output to the `out.txt` file.
 
 2.
