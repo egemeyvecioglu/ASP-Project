@@ -125,7 +125,7 @@ fileSelector.addEventListener('change', () => {
 		() => {
 			const lines = reader.result.split("\n");
 
-			for (var lineIndex = 3; lineIndex < lines.length && lines[lineIndex].slice(0, 6) == "Answer"; lineIndex += 2) {
+			for (var lineIndex = 3; lineIndex < lines.length && lines[lineIndex].slice(0, 6) == "Answer"; lineIndex += 3) {
 				const line = lines[lineIndex + 1];
 				const assignments = line.split(' ');
 
