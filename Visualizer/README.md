@@ -1,6 +1,6 @@
 # Hakkında
 
-[rules.lp](https://github.com/egemeyvecioglu/ASP-Project/blob/main/rules.lp)'nin çıktısını bir dosyaya yazdırıp (`clingo rules.lp 1024 > output.txt`) bu dosyayı [tables.html](https://github.com/egemeyvecioglu/ASP-Project/blob/main/Visualizer/tables.html) sayfasına girdi olarak vererek sonuçları görselleştirebilirsiniz. Girdi işlendikten sonra sayfanın üstündeki butonlara basarak veya klavyenizin ok tuşlarını kullanarak oluşturulan schedule'lar arasında gezebilirsiniz.
+[rules.lp](https://github.com/egemeyvecioglu/ASP-Project/blob/main/rules.lp)'nin çıktısını bir dosyaya yazdırıp (`clingo rules.lp <NUMBER_OF_SCHEDULE> --quiet=1 --opt-mode=optN > out.txt`) bu dosyayı [tables.html](https://github.com/egemeyvecioglu/ASP-Project/blob/main/Visualizer/tables.html) sayfasına girdi olarak vererek sonuçları görselleştirebilirsiniz. Girdi işlendikten sonra sayfanın üstündeki butonlara basarak veya klavyenizin ok tuşlarını kullanarak oluşturulan schedule'lar arasında gezebilirsiniz.
 
 ### HTML/CSS hakkında
 
