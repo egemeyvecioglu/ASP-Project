@@ -119,6 +119,39 @@ function draw(){
 	document.getElementById("end_time").innerHTML = to_clock(day_end);
 }
 
+const hoca_constant_name_mapping = new Map([
+	["gokturk_ucoluk", "Göktürk Üçoluk"],
+	["sinan_kalkan", "Sinan Kalkan"],
+	["ahmet_oguz_akyuz", "Ahmet Oğuz Akyüz"],
+	["ayse_nur_birturk", "Ayşenur Birtürk"],
+	["ayse_yasemin_seydim", "Ayşe Yasemin Seydim"],
+	["cevat_sener", "Cevat Şener"],
+	["emre_akbas", "Emre Akbaş"],
+	["erol_sahin", "Erol Şahin"],
+	["ertan_onur", "Ertan Onur"],
+	["faruk_polat", "Faruk Polat"],
+	["faruk_tokdemir", "Faruk Tokdemir"],
+	["fatos_tunay_yarman_vural", "Fatoş Tunay Yarman Vural"],
+	["fehime_nihan_cicekli", "Fehime Nihan Çiçekli"],
+	["ferda_nur_alpaslan", "Ferda Nur Alpaslan"],
+	["gokturk_ucoluk", "Göktürk Üçoluk"],
+	["hakan_yildiz", "Hakan Yıldız"],
+	["hande_alemdar", "Hande Alemdar"],
+	["ismail_hakki_toroslu", "İsmail Hakkı Toroslu"],
+	["ismail_sengor_altingovde", "İsmail Sengör Altıngövde"],
+	["mehmet_halit_s_oguztuzun", "Mehmet Halit S. Oğuztüzün"],
+	["murat_manguoglu", "Murat Manguoğlu"],
+	["onur_tolga_sehitoglu", "Onur Tolga Şehitoğlu"],
+	["pelin_angin", "Pelin Angın"],
+	["pinar_karagoz", "Pınar Karagöz"],
+	["ramazan_gokberk_cinbis", "Ramazan Gökberk Cinbiş"],
+	["seyda_ertekin_bolelli", "Şeyda Ertekin Bolelli"],
+	["seyyit_alper_sert", "Seyyit Alper Sert"],
+	["sinan_kalkan", "Sinan Kalkan"],
+	["uluc_saranli", "Uluç Saranlı"],
+	["yusuf_sahillioglu", "Yusuf Sahillioğlu"]
+]) 
+
 /* main */
 const fileSelector = document.getElementById('file_selector');
 fileSelector.addEventListener('change', () => {
@@ -151,7 +184,7 @@ fileSelector.addEventListener('change', () => {
 					const day = assignment_information[2];
 					const start_hour = parseInt(assignment_information[3]);
 					const place = assignment_information[4];
-					const lecturer = assignment_information[5];
+					const lecturer = hoca_constant_name_mapping.get(assignment_information[5]);
 					const section = assignment_information[6];
 					
 					new_schedule_map.get(day).get(place)[start_hour - 8] = {
@@ -164,7 +197,6 @@ fileSelector.addEventListener('change', () => {
 				}
 
 				var new_schedule = [];
-				console.log(new_schedule_map);
 				new_schedule_map.forEach(daily_schedule => daily_schedule.forEach(lesson => {
 					lesson.forEach((lesson) => {
 						if (new_schedule.length)    // If any other lessons were added to the schedule
