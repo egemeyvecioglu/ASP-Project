@@ -46,6 +46,9 @@ function to_clock(min){
 /* by default, 08:40 to 17:30 */
 var day_start = 520, day_end = 1050;
 
+var day_names = ["mon", "tue", "wed", "thu", "fri"];
+var place_names = ["bmb1", "bmb2", "bmb3", "bmb4", "bmb5", "bmb_a101", "g101"];
+
 /* draw a block on the table col "day"- from start to end.
  * assumes end > start, if not, weird results can emerge.
  * returns the dom element it makes. */
@@ -106,8 +109,9 @@ function draw(){
 				day_end = sch[i].e;
 
 		for(i=0; i<sch.length; i++){
-			if(!sch[i].t) continue;
-			var a = block(sch[i].day, sch[i].place, sch[i].s, sch[i].e, sch[i].t);
+			if (!sch[i].t)
+				continue;
+			block(sch[i].day, sch[i].place, sch[i].s, sch[i].e, sch[i].t);
 		}
 		document.getElementById("counter").innerHTML = (current_schedule+1).toString() + " / " + schedules.length;
 	}
@@ -129,7 +133,16 @@ fileSelector.addEventListener('change', () => {
 				const line = lines[lineIndex + 1];
 				const assignments = line.split(' ');
 
-				var new_schedule = [];
+				const new_schedule_map = new Map();    // A map for each day
+				day_names.forEach((day_name) => {
+					const daily_schedule_map = new Map();    // A map for each place
+					place_names.forEach((place_name) => {
+						daily_schedule_map.set(place_name, new Array(9))    // 9 hours per day
+					});
+
+					new_schedule_map.set(day_name, daily_schedule_map);
+				});
+
 				for (var assignmentIndex = 0; assignmentIndex < assignments.length; assignmentIndex++) {
 					const assignment = assignments[assignmentIndex];
 					const assignment_information = assignment.match(/\w+/g);
@@ -140,15 +153,35 @@ fileSelector.addEventListener('change', () => {
 					const place = assignment_information[4];
 					const lecturer = assignment_information[5];
 					const section = assignment_information[6];
-
-					new_schedule.push({
+					
+					new_schedule_map.get(day).get(place)[start_hour - 8] = {
 						s: start_hour * 60 + 40,
 						e: start_hour * 60 + 90,
 						day: day,
 						place: place,
 						t: course_code + "." + section + "<br>" + lecturer
-					})
+					};
 				}
+
+				var new_schedule = [];
+				console.log(new_schedule_map);
+				new_schedule_map.forEach(daily_schedule => daily_schedule.forEach(lesson => {
+					lesson.forEach((lesson) => {
+						if (new_schedule.length)    // If any other lessons were added to the schedule
+						{
+							const previous_lesson = new_schedule[new_schedule.length - 1];
+							if (previous_lesson.e == lesson.s - 10
+								&& previous_lesson.day == lesson.day
+								&& previous_lesson.t == lesson.t)
+								previous_lesson.e = lesson.e;
+							else
+								new_schedule.push(lesson);
+						}
+						else
+							new_schedule.push(lesson);
+					})
+				}));
+
 				schedules.push(new_schedule)
 			}
 
